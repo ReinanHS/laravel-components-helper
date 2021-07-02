@@ -3,24 +3,7 @@
  * @var \Reinanhs\LaravelComponentsHelper\Helpers\Table\TableBase $table
  */
 ?>
-<style>
-    table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-    }
-
-    td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-    }
-
-    tr:nth-child(even) {
-        background-color: #dddddd;
-    }
-</style>
-<table class="table">
+<table class="{{ config('components-helper.default_table_attributes.class') }}">
     <thead>
     <tr>
         <?php

@@ -1,34 +1,34 @@
 {
-    "name": "reinanhs/laravel-components-helper",
-    "description": "Ready-to-use and customizable components.",
-    "keywords": [
-        "reinanhs",
-        "laravel",
-        "components"
-    ],
-    "homepage": "https://github.com/reinanhs/laravel-components-helper",
-    "type": "library",
-    "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "Reinanhs\\LaravelComponentsHelper\\": "src/"
-        }
-    },
-    "authors": [
-        {
-            "name": "ReinanHS",
-            "email": "reinangabriel1520@gmail.com",
-            "role": "Developer"
-        }
-    ],
-    "require": {
-        "php": "^7.4||^8.0",
-        "ext-json": "*",
-        "illuminate/support": "^7.0||^8.0"
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
-    "require-dev": {
-        "damianopetrungaro/php-commitizen": "^0.2.0"
+  "name": "reinanhs/laravel-components-helper",
+  "description": "Ready-to-use and customizable components.",
+  "keywords": [
+    "reinanhs",
+    "laravel",
+    "components"
+  ],
+  "homepage": "https://github.com/reinanhs/laravel-components-helper",
+  "type": "library",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Reinanhs\\LaravelComponentsHelper\\": "src/"
     }
+  },
+  "authors": [
+    {
+      "name": "ReinanHS",
+      "email": "reinangabriel1520@gmail.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "^7.4||^8.0",
+    "ext-json": "*",
+    "illuminate/support": "^7.0||^8.0"
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }
