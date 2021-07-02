@@ -74,6 +74,7 @@ class ProjectController extends Controller
             ->with('i', (request()->input('page', 1) - 1) * 5)
             ->with('table', $table);
     }
+}    
 ```
 
 Now just render your table in the view
@@ -123,4 +124,5 @@ class ProjectTable extends EloquentTable
     {
         return "<button>{$cost}</button>";
     }
+}
 ```
