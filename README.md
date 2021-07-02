@@ -81,3 +81,46 @@ Now just render your table in the view
 ```blade
 {!! $table->render() !!}
 ```
+
+##  Configuration Files
+
+Bootstrap 5 classes are used by default for styling the tables. That can be modified by changing the configuration.
+
+First, publish the package assets/configuration.
+
+`php artisan vendor:publish --provider="Reinanhs\LaravelComponentsHelper\ComponentHelperServiceProvider" --tag="config"`
+
+This will create config file config/components-helper.php.
+
+```php
+/**
+ * Components Helper Configuration File.
+ */
+return [
+
+    /**
+     * Attributes of table 
+     * 
+     * @return array
+     */
+    'default_table_attributes' => [
+        'class' => 'table table-striped',
+    ],
+];
+
+```
+
+## Eloquent Table
+
+You can change the rendering of an attribute
+
+```php
+class ProjectTable extends EloquentTable
+{
+    protected $model = Project::class;
+
+    public function getCostAttribute(int $cost)
+    {
+        return "<button>{$cost}</button>";
+    }
+```
