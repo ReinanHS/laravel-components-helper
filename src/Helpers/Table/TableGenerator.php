@@ -7,12 +7,15 @@ namespace Reinanhs\LaravelComponentsHelper\Helpers\Table;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
+use Reinanhs\LaravelComponentsHelper\Helpers\Table\Structure\Actions\Actions;
 use Reinanhs\LaravelComponentsHelper\Helpers\Table\Structure\Cell;
 use Reinanhs\LaravelComponentsHelper\Helpers\Table\Structure\Table;
 
 abstract class TableGenerator
 {
     private Table $table;
+    private Actions $actions;
+    protected bool $isEmptyActions = true;
 
     protected string $dataFormat = "Y-m-d";
 
@@ -22,6 +25,7 @@ abstract class TableGenerator
     public function __construct()
     {
         $this->table = new Table();
+        $this->actions = new Actions();
     }
 
     /**
@@ -30,6 +34,22 @@ abstract class TableGenerator
     public function getTable(): Table
     {
         return $this->table;
+    }
+
+    /**
+     * @return Actions
+     */
+    public function getActions(): Actions
+    {
+        return $this->actions;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isEmptyActions(): bool
+    {
+        return $this->isEmptyActions;
     }
 
     /**
@@ -124,6 +144,8 @@ abstract class TableGenerator
      */
     public function render(): string
     {
+        $this->isEmptyActions = $this->getActions()->isEmptyActions();
+
         return $this->makeView()->render();
     }
 

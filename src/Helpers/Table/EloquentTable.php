@@ -4,6 +4,7 @@ namespace Reinanhs\LaravelComponentsHelper\Helpers\Table;
 
 use Exception;
 use Illuminate\Support\Facades\App;
+use Reinanhs\LaravelComponentsHelper\Helpers\Table\Structure\Actions\Actions;
 use Reinanhs\LaravelComponentsHelper\Helpers\Table\Structure\Table;
 
 /**
@@ -12,8 +13,10 @@ use Reinanhs\LaravelComponentsHelper\Helpers\Table\Structure\Table;
  */
 class EloquentTable extends TableGenerator
 {
-    /*
-     *  Model for gerente table
+    /**
+     * Model for gerente table
+     *
+     * @var string|object
      */
     protected $model;
 
@@ -27,8 +30,8 @@ class EloquentTable extends TableGenerator
         parent::__construct();
 
         $this->makeModel();
-
         $this->columns($this->getTable());
+        $this->actions($this->getActions());
         $this->rows($rows);
     }
 
@@ -45,10 +48,22 @@ class EloquentTable extends TableGenerator
         $this->model = App::make($this->model);
     }
 
+    /**
+     * Method for creating table columns
+     *
+     * @param Table $table
+     */
     protected function columns(Table $table): void
     {
         foreach ($this->model->getFillable() as $attribute) {
             $this->column($attribute);
         }
     }
+
+    /**
+     * Method for creating table actions
+     *
+     * @param Actions $actions
+     */
+    protected function actions(Actions $actions): void {}
 }
