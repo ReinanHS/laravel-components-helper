@@ -15,7 +15,7 @@
             <th scope="col">{{ __('columns.'.$column->getKey()) }}</th>
         @endforeach
         @if(!$table->isEmptyActions())
-            <tr scope="col">{{ $table->getActions()->getName() }}</tr>
+            <th scope="col">{!! $table->getActions()->getName() !!}</th>
         @endif
     </tr>
     </thead>
