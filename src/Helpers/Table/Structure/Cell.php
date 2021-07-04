@@ -3,15 +3,34 @@
 
 namespace Reinanhs\LaravelComponentsHelper\Helpers\Table\Structure;
 
+use Illuminate\Support\Collection;
+
 /**
  * Class Cell
  * @package Reinanhs\LaravelComponentsHelper\Helpers\Table\Structure
  */
 class Cell
 {
-    private string $key;
-    private string $methodName;
-    private array $attributes;
+    /**
+     * The name of key the row
+     *
+     * @var string
+     */
+    private $key;
+
+    /**
+     * Method name to get the information
+     *
+     * @var string
+     */
+    private $methodName;
+
+    /**
+     * Cell attributes
+     *
+     * @var array
+     */
+    private $attributes;
 
     /**
      * Cell constructor.
@@ -27,6 +46,8 @@ class Cell
     }
 
     /**
+     * Method to get the key the row
+     *
      * @return string
      */
     public function getKey(): string
@@ -35,6 +56,8 @@ class Cell
     }
 
     /**
+     * Method to set the key the row
+     *
      * @param string $key
      */
     public function setKey(string $key): void
@@ -43,6 +66,8 @@ class Cell
     }
 
     /**
+     * Method to get the attribute method name
+     *
      * @return string
      */
     public function getMethodName(): string
@@ -51,6 +76,8 @@ class Cell
     }
 
     /**
+     * Method to set the attribute method name
+     *
      * @param string $methodName
      */
     public function setMethodName(string $methodName): void
@@ -59,6 +86,8 @@ class Cell
     }
 
     /**
+     * Method to get attributes
+     *
      * @return array
      */
     public function getAttributes(): array
@@ -67,9 +96,11 @@ class Cell
     }
 
     /**
-     * @param array $attributes
+     * Method for setting attributes
+     *
+     * @param array|Collection $attributes
      */
-    public function setAttributes(array $attributes): void
+    public function setAttributes($attributes): void
     {
         $this->attributes = $attributes;
     }
