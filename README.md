@@ -115,10 +115,5 @@ You can change the rendering of an attribute
 class ProjectTable extends EloquentTable
 {
     protected $model = Project::class;
-
-    public function getCostAttribute(int $cost)
-    {
-        return "<button>{$cost}</button>";
-    }
 }
 ```
