@@ -66,13 +66,9 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::latest()->paginate(5);
-        
-        $array = $projects->getCollection()->toArray();
-        $table = new ProjectTable($array);
 
-        return view('projects.index', compact('projects'))
-            ->with('i', (request()->input('page', 1) - 1) * 5)
-            ->with('table', $table);
+        return view('projects.index')
+            ->with('table', new ProjectTable($projects));
     }
 }    
 ```
