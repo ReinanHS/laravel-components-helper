@@ -3,7 +3,10 @@
 namespace Reinanhs\LaravelComponentsHelper\Helpers\Table;
 
 use Exception;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
+use LogicException;
 use Reinanhs\LaravelComponentsHelper\Helpers\Table\Structure\Actions\Actions;
 use Reinanhs\LaravelComponentsHelper\Helpers\Table\Structure\Table;
 
@@ -22,17 +25,38 @@ class EloquentTable extends TableGenerator
 
     /**
      * EloquentTable constructor.
-     * @param array|null $rows
+     * @param array|Collection|null $rows
      * @throws Exception
      */
-    public function __construct(array $rows = [])
+    public function __construct($rows = null)
     {
         parent::__construct();
 
         $this->makeModel();
         $this->columns($this->getTable());
         $this->actions($this->getActions());
-        $this->rows($rows);
+        $this->setRows($rows);
+    }
+
+    /**
+     * @param array|Collection|null $rows
+     */
+    private function setRows($rows)
+    {
+        if (empty($rows)) {
+            return;
+        } elseif (is_array($rows)) {
+            $this->rows(new Collection($rows));
+            return;
+        } elseif ($rows instanceof Collection) {
+            $this->rows($rows);
+            return;
+        } elseif ($rows instanceof LengthAwarePaginator) {
+            $this->rows($rows->getCollection());
+            return;
+        }
+
+        throw new LogicException("Rows are not of a valid type");
     }
 
     /**
@@ -65,5 +89,7 @@ class EloquentTable extends TableGenerator
      *
      * @param Actions $actions
      */
-    protected function actions(Actions $actions): void {}
+    protected function actions(Actions $actions): void
+    {
+    }
 }

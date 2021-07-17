@@ -4,7 +4,7 @@
 namespace Reinanhs\LaravelComponentsHelper\Helpers\Table\Structure;
 
 
-use Illuminate\Contracts\View\View;
+use Illuminate\Support\Collection;
 
 /**
  * Class Table
@@ -12,18 +12,25 @@ use Illuminate\Contracts\View\View;
  */
 class Table
 {
-    private array $columns;
-    private array $rows;
+    /**
+     * @var Collection
+     */
+    private $columns;
+
+    /**
+     * @var Collection
+     */
+    private $rows;
 
     /**
      * Table constructor.
-     * @param array $columns
-     * @param array $rows
+     * @param Collection|null $columns
+     * @param Collection|null $rows
      */
-    public function __construct(array $columns = [], array $rows = [])
+    public function __construct(?Collection $columns = null, ?Collection $rows = null)
     {
-        $this->columns = $columns;
-        $this->rows = $rows;
+        $this->columns = $columns ?? new Collection([]);
+        $this->rows = $rows ?? new Collection([]);
     }
 
     /**
@@ -53,9 +60,9 @@ class Table
     }
 
     /**
-     * @return array
+     * @return Collection
      */
-    public function getColumns(): array
+    public function getColumns(): Collection
     {
         return $this->columns;
     }
@@ -69,17 +76,17 @@ class Table
     }
 
     /**
-     * @return array
+     * @return Collection
      */
-    public function getRows(): array
+    public function getRows(): Collection
     {
         return $this->rows;
     }
 
     /**
-     * @param array $rows
+     * @param Collection $rows
      */
-    public function setRows(array $rows): void
+    public function setRows(Collection $rows): void
     {
         $this->rows = $rows;
     }

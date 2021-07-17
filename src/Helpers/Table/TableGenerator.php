@@ -6,6 +6,7 @@ namespace Reinanhs\LaravelComponentsHelper\Helpers\Table;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Reinanhs\LaravelComponentsHelper\Helpers\Table\Structure\Actions\Actions;
 use Reinanhs\LaravelComponentsHelper\Helpers\Table\Structure\Cell;
@@ -74,25 +75,21 @@ abstract class TableGenerator
         return $cell;
     }
 
-    protected function rows(array $rows): void
+    protected function rows(Collection $rows): void
     {
         $this->table->setRows($rows);
     }
 
     protected abstract function columns(Table $table): void;
 
-    /**
-     * @return array
-     */
-    public function getColumns(): array
+
+    public function getColumns(): Collection
     {
         return $this->table->getColumns();
     }
 
-    /**
-     * @return array
-     */
-    public function getRows(): array
+
+    public function getRows(): Collection
     {
         return $this->table->getRows();
     }
